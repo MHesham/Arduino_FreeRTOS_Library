@@ -234,9 +234,23 @@ extern void vPortYield( void )          __attribute__ ( ( naked ) );
 
 #define portTASK_FUNCTION( vFunction, pvParameters ) void vFunction( void *pvParameters )
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern void vConfigureTimerForRunTimeStats( void );
+extern unsigned long vGetTimerForRunTimeStats( void );
+
+#ifdef __cplusplus
+}
+#endif
+
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() vConfigureTimerForRunTimeStats()
+#define portGET_RUN_TIME_COUNTER_VALUE() vGetTimerForRunTimeStats()
+
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* PORTMACRO_H */
-

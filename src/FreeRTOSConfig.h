@@ -84,40 +84,51 @@
  * See http://www.freertos.org/a00110.html.
  *----------------------------------------------------------*/
 
-// And on to the things the same no matter the AVR type...
+/* Task scheduling related definitions. */
 #define configUSE_PREEMPTION                1
-#define configUSE_IDLE_HOOK                 1
-#define configUSE_TICK_HOOK                 0
-#define configCPU_CLOCK_HZ                  ( ( uint32_t ) F_CPU )			// This F_CPU variable set by the environment
-#define configMAX_PRIORITIES                ( ( UBaseType_t ) 4 )
-#define configMINIMAL_STACK_SIZE            ( ( UBaseType_t ) 85 )
-#define configIDLE_STACK_SIZE               ( ( UBaseType_t ) 192 )
-#define configMAX_TASK_NAME_LEN             ( 8 )
-#define configUSE_TRACE_FACILITY            0
-#define configUSE_16_BIT_TICKS              1
+#define configUSE_TIME_SLICING              1
 #define configIDLE_SHOULD_YIELD             1
+#define configUSE_16_BIT_TICKS              1
+#define configMAX_PRIORITIES                ( ( UBaseType_t ) 5 )
+#define configCPU_CLOCK_HZ                  ( ( uint32_t ) F_CPU )			// This F_CPU variable set by the environment
+
+/* Stack related definitions. */
+#define configMINIMAL_STACK_SIZE            ( ( UBaseType_t ) 128 )
+#define configIDLE_STACK_SIZE               ( ( UBaseType_t ) 192 )
+#define configMAX_TASK_NAME_LEN             ( 12 )
 
 #define configUSE_MUTEXES                   1
 #define configUSE_RECURSIVE_MUTEXES         1
 #define configUSE_COUNTING_SEMAPHORES       1
 #define configUSE_QUEUE_SETS                0
 #define configQUEUE_REGISTRY_SIZE           0
-#define configUSE_TIME_SLICING              1
-#define configCHECK_FOR_STACK_OVERFLOW      1
-#define configUSE_MALLOC_FAILED_HOOK        1
 
+/* Memory allocation related definitions. */
 #define configSUPPORT_DYNAMIC_ALLOCATION    1
 #define configSUPPORT_STATIC_ALLOCATION     0
+#define configTOTAL_HEAP_SIZE               4096
 
-/* Timer definitions. */
-#define configUSE_TIMERS                    1
-#define configTIMER_TASK_PRIORITY           ( ( UBaseType_t ) 3 )
-#define configTIMER_QUEUE_LENGTH            ( ( UBaseType_t ) 10 )
-#define configTIMER_TASK_STACK_DEPTH        configMINIMAL_STACK_SIZE
+/* Hook function related definitions. */
+#define configUSE_IDLE_HOOK                 1
+#define configUSE_TICK_HOOK                 0
+#define configCHECK_FOR_STACK_OVERFLOW      1
+#define configUSE_MALLOC_FAILED_HOOK        1
+#define configUSE_DAEMON_TASK_STARTUP_HOOK  0
+
+/* Run time and task stats gathering related definitions. */
+#define configUSE_TRACE_FACILITY            1
+#define configGENERATE_RUN_TIME_STATS       1
+#define configUSE_STATS_FORMATTING_FUNCTIONS 1
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES               0
 #define configMAX_CO_ROUTINE_PRIORITIES     ( (UBaseType_t ) 2 )
+
+/* Software timer related definitions. */
+#define configUSE_TIMERS                    1
+#define configTIMER_TASK_PRIORITY           ( ( UBaseType_t ) 2  )
+#define configTIMER_QUEUE_LENGTH            ( ( UBaseType_t ) 10 )
+#define configTIMER_TASK_STACK_DEPTH        configMINIMAL_STACK_SIZE
 
 /* Set the stack pointer type to be uint16_t, otherwise it defaults to unsigned long */
 #define portPOINTER_SIZE_TYPE			uint16_t
